@@ -32,7 +32,7 @@ function App() {
     <div className="App">
       {done ? (
         <div>
-          <h1>Your Score: {score}</h1>
+          <h1>כל הכבוד! הצלחת לפתור נכון {score} שאלות</h1>
         </div> ) : (
         questions.length > 0 && (  
           <Question  

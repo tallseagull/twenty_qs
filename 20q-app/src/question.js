@@ -1,21 +1,29 @@
 import React, { useState, useEffect } from 'react';  
 import './questions.css'; // Import the CSS file  
+import ReactMarkdown from 'react-markdown'; // Import ReactMarkdown
   
 function Question({ questions, score, onScoreUpdate, onDone, answers }) {  
   const [showAnswer, setShowAnswer] = useState(false);  
   const [answerBackground, setAnswerBackground] = useState('blue');  
   const [questionNumber, setQuestionNumber] = useState(0); // Start from 0 to match array index
   
+  const updateAnswerBackground = () => {  
+    if (answers[questionNumber] === 1) { 
+      handleReveal();
+      setAnswerBackground('green');  
+    } else if (answers[questionNumber] === -1) {  
+      handleReveal();
+      setAnswerBackground('red');  
+    } else {  
+      setAnswerBackground('blue');  
+    }  
+  };
+
   useEffect(() => {
     // Set the initial answer background based on the answers array
-    if (answers[questionNumber] === 1) {
-      setAnswerBackground('green');
-    } else if (answers[questionNumber] === -1) {
-      setAnswerBackground('red');
-    } else {
-      setAnswerBackground('blue');
-    }
-  }, [questionNumber, answers]);
+    console.log(questions[questionNumber]);
+    updateAnswerBackground();
+  }, [questionNumber, answers, updateAnswerBackground]);
 
   const handleReveal = () => {  
     setShowAnswer(true);  
@@ -52,9 +60,18 @@ function Question({ questions, score, onScoreUpdate, onDone, answers }) {
   return questions ? (  
     <div className="question-container">  
       <div className="question-number">.. {questionNumber + 1} ..</div> {/* Added question number */}
+      {questions[questionNumber].img && (
+        <img className="question-image"
+          src={questions[questionNumber].img} 
+          alt="Question related" 
+        />
+      )}
       <div className="question-text">{questions[questionNumber].question}</div>  
       {!showAnswer && (  
-        <div className="reveal-button-container">  
+        <div 
+          className="reveal-button-container" 
+          style={!questions[questionNumber].img ? { bottom: '50%' } : {}}
+        >  
           <button className="reveal-button" onClick={handleReveal}>  
             ?  
           </button>  
@@ -62,7 +79,18 @@ function Question({ questions, score, onScoreUpdate, onDone, answers }) {
       )}  
       {showAnswer && (  
         <div className="answer-container" style={{ backgroundColor: answerBackground }}>  
-          <div>{questions[questionNumber].answer}</div>  
+          <div dir="rtl">{questions[questionNumber].answer}</div>  
+          {questions[questionNumber].explanation && (
+            <div className="answer-explanation">
+              <ReactMarkdown 
+                components={{
+                  a: ({node, ...props}) => <a {...props} target="_blank" rel="noopener noreferrer" />
+                }}
+              >
+                {questions[questionNumber].explanation}
+              </ReactMarkdown>
+            </div>
+          )}
           <div className="answer-buttons">  
             <button className="answer-button checkmark" onClick={handleCheckmark}>  
               ✔  
