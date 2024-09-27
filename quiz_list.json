@@ -1,0 +1,20 @@
+{
+    "quizzes": [
+        {
+            "name": "שאלון 1",
+            "path": "/twenty_qs/questions.json"
+        },
+        {
+            "name": "שאלון 2",
+            "path": "/twenty_qs/questions_2.json"
+        },
+        {
+            "name": "שאלון 3",
+            "path": "/twenty_qs/questions_3.json"
+        },
+        {
+            "name": "שאלון 4",
+            "path": "/twenty_qs/questions_4.json"
+        }
+    ]
+}
