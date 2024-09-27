@@ -30,12 +30,17 @@ function Question({ questions, score, onScoreUpdate, onDone, answers }) {
   };  
   
   const handleCheckmark = () => {  
-    onScoreUpdate(score + 1);  
+    if (answers[questionNumber] !== 1) {
+      onScoreUpdate(score + 1);
+    }
     answers[questionNumber] = 1; // Update the answer array
     setAnswerBackground('green');  
   };  
   
   const handleCross = () => {  
+    if (answers[questionNumber] === 1 {
+      onScoreUpdate(score - 1)
+    }
     answers[questionNumber] = -1; // Update the answer array
     setAnswerBackground('red');  
   };  
