@@ -15,6 +15,22 @@
         {
             "name": "שאלון 4",
             "path": "/twenty_qs/questions_4.json"
+        },
+        {
+            "name": "שאלון 5",
+            "path": "/twenty_qs/questions_5.json"
+        },
+        {
+            "name": "שאלון 6",
+            "path": "/twenty_qs/questions_6.json"
+        },
+        {
+            "name": "שאלון 7",
+            "path": "/twenty_qs/questions_7.json"
+        },
+        {
+            "name": "שאלון 8",
+            "path": "/twenty_qs/questions_8.json"
         }
     ]
 }
